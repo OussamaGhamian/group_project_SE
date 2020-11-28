@@ -8,20 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Team extends Model
 {
     use HasFactory;
-    protected $guarded=[];
+    protected $guarded = [];
 
-    public function orgnization(){
+    public function organization()
+    {
         return $this->belongsTo(Organization::class);
     }
 
-    // public function projects(){
-    //     return $this->hasMany(Project::class);
-    // }
-
-
-    // if we want to know the team users , if so , we have to put the user_id as a foreign key in team table
-    public function users(){
-        return $this->hasMany(User::class);
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
     }
-       
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
