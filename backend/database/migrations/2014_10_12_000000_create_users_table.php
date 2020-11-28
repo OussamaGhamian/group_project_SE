@@ -22,17 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('token');
             $table->string('image');
-            $table->integer('is_admin');// should it be boolean?
-            $table->unsignedBigInteger('team_id');
+            $table->boolean('is_admin');
             $table->rememberToken();
             $table->timestamps();
-
-
-            $table->foreign('team_id')
-            ->references('id')
-            ->on('teams')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
         });
     }
 
