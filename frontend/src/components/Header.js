@@ -8,28 +8,26 @@ export default function Header( { Items } ) {
     return (
         <div>
             <Navbar bg="primary" expand="md">
-                <Navbar.Brand href="/"><img src={logo} width='80px' alt='logo'></img><span>ORG NAME</span></Navbar.Brand>
+                <Navbar.Brand href="/"><img src={logo} width='80px' alt='logo'></img><span className="text-light">ORG NAME</span></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
                         {Items.map((item) => {
                             return (
                                 <li className="nav-item" key={item.title}>
-                                    <a className="nav-link " href={item.href}> {item.title} </a>
+                                    <a className="nav-link text-light " href={item.href}> {item.title} </a>
                                 </li>
                             );
                         })}
                         {currentURL === '/' ? null : < Dropdown >
                             <Dropdown.Toggle variant="success" id="dropdown-basic">
                                 My Account</Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1">Edit Profile</Dropdown.Item>
+                            <Dropdown.Menu className="sm">
+                                <Dropdown.Item href="/">Edit Profile</Dropdown.Item>
                                 <Dropdown.Item href="/">Log Out!</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>}
-
                     </Nav>
-
                 </Navbar.Collapse>
             </Navbar>
         </div >
