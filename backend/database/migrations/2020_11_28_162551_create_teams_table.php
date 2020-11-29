@@ -18,6 +18,12 @@ class CreateTeamsTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('organization_id');
             $table->timestamps();
+
+            $table->foreign('organization_id')
+            ->references('id')
+            ->on('organizations')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
         });
     }
 
