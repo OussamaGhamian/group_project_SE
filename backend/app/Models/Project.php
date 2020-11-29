@@ -26,12 +26,15 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $title
+ * @method static \Illuminate\Database\Eloquent\Builder|Project whereTitle($value)
  */
 class Project extends Model
 {
     use HasFactory;
 
     protected $fillable = ['title', 'description', 'due_date'];
+    
     public function tasks()
     {
         return $this->hasMany(Task::class);

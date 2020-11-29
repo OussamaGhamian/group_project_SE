@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 /**
  * App\Models\User
@@ -46,10 +47,18 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $f_name
+ * @property string $l_name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
+ * @property-read int|null $clients_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ * @property-read int|null $tokens_count
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereFName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLName($value)
  */
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -57,9 +66,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'f_name',
+        'l_name',
         'email',
         'password',
+        'image',
+        'is_admin'
     ];
 
     /**
@@ -82,7 +94,7 @@ class User extends Authenticatable
     ];
     public function organizations()
     {
-        return $this->hasMany(Organization::class,'owner_id');
+        return $this->hasMany(Organization::class, 'owner_id');
     }
     public function tasks()
     {
