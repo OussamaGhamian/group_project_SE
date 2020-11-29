@@ -43,7 +43,6 @@ class ProjectController extends Controller
             ]));
             if ($project)
                 return response()->json(["data" => $project, 'success' => true, 'msg' => 'Project has been added successfully']);
-            return response()->json(["data" => [], 'success' => true, 'msg' => 'Project has not been added']);
         } catch (Exception $ex) {
             return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
         }
@@ -60,7 +59,6 @@ class ProjectController extends Controller
         try {
             if ($project)
                 return response()->json(["data" => $project, 'success' => true, 'msg' => "Project with id: {$project->id} has been retrieved successfully"]);
-            return response()->json(["data" => null, 'success' => true, 'msg' => "No project with id: {$project->id} to be retrieved"]);
         } catch (Exception $ex) {
             return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
         }
@@ -86,7 +84,6 @@ class ProjectController extends Controller
             ]));
             if ($proj)
                 return response()->json(["data" => $project, 'success' => true, 'msg' => "Project with id: {$project->id} has been updated successfully"]);
-            return response()->json(["data" => null, 'success' => false, 'msg' => "No project with id: {$project->id} to be updated"], 404);
         } catch (Exception $ex) {
             return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
         }
@@ -103,7 +100,6 @@ class ProjectController extends Controller
         try {
             if ($project->delete())
                 return response()->json(['data' => [], "success" => true, 'msg' => "Project with id: {$project->id} has been deleted successfully"]);
-            return response()->json(['data' => [], "success" => false, 'msg' => "No Project with id: {$project->id} to be deleted"], 404);
         } catch (Exception $ex) {
             return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
         }
