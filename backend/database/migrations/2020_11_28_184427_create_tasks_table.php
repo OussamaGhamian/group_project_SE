@@ -18,9 +18,10 @@ class CreateTasksTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->unsignedBigInteger('user_id');
-            $table->boolean('is_done');
+            $table->boolean('is_done')->default(false);
             $table->timestamps();
             $table->timestamp('due_date');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
