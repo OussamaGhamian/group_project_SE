@@ -23,6 +23,7 @@ class ProjectFactory extends Factory
     public function definition()
     {
         return [
+            'title' => $this->faker->word(),
             'description' => $this->faker->text(),
             'due_date' => $this->faker->dateTimeBetween('+1 weeks', '+1 year'),
         ];
