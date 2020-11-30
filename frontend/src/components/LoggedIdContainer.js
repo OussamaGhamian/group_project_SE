@@ -1,6 +1,6 @@
 import { DropdownButton,Dropdown } from "react-bootstrap"
 
-export default function Container({ body, title, button,hasOrganization }) {
+export default function LoggedIdContainer({ body, title, button,hasOrganization }) {
     return (
         <div >
             <div className="card text-center 100vh">
@@ -15,7 +15,7 @@ export default function Container({ body, title, button,hasOrganization }) {
                         </DropdownButton>
                         </li>
                         <li className="nav-item m-1">
-                        <DropdownButton id="dropdown-basic-button" title="All My Projects">
+                        <DropdownButton id="dropdown-basic-button" title="My Projects">
                             <Dropdown.Item href="#/action-1">PROJECT 1 ORG 1</Dropdown.Item>
                             <Dropdown.Item href="#/action-2">PROJECT 2 ORG 1</Dropdown.Item>
                             <Dropdown.Item href="#/action-2">PROJECT 3 of ORG 2</Dropdown.Item>

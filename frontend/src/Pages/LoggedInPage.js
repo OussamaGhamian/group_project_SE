@@ -1,4 +1,4 @@
-import Container from "../components/Container";
+import LoggedIdContainer from "../components/LoggedIdContainer";
 import Header from "../components/Header";
 import { LoggedInPageItems } from '../components/NavbarItems';
 
@@ -13,14 +13,14 @@ export default function LoggedInPage() {
         [
         {
                 title: 'all of your list of Projects within given ORG',
-                href:'/p1o1',
+                href:'/ProjectPage',
         },
         { title: 'all of your list of Projects within given ORG' ,
-            href: '/p1o1',
+            href: '/ProjectPage',
         }
         ,
         { title: 'all of your list of Projects within given ORG' ,
-            href: '/p1o1',
+            href: '/ProjectPage',
         },
         ]
         : body =[{ title:'by adding an organization you can manage your projects, teams and tasks, GoodLuck!'}];
@@ -36,7 +36,7 @@ export default function LoggedInPage() {
     return (
         <div>
             <Header Items={LoggedInPageItems} />
-            <Container body={body} title={title} button={button} hasOrganization={hasOrganization}/>
+            <LoggedIdContainer body={body} title={title} button={button} hasOrganization={hasOrganization}/>
         </div>
     )
 }

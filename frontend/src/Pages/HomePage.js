@@ -5,9 +5,6 @@ export default function HomePage() {
     return (
         <div>
             <Header Items={HomePageItems} />
-         
-             
-
         </div>
         
     )
