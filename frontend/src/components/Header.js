@@ -3,12 +3,14 @@ import { Dropdown, Navbar, Nav } from 'react-bootstrap';
 import logo from '../like.png';
 import { useLocation } from 'react-router-dom';
 
-export default function Header( { Items } ) {
+export default function Header({ Items }) {
     const currentURL = useLocation().pathname;
+    var expand = '';
+    currentURL === '/' ? expand = 'sm' : expand = 'md';
     return (
         <div>
-            <Navbar bg="primary" expand="md">
-                <Navbar.Brand href="/"><img src={logo} width='80px' alt='logo'></img><span className="text-light">ORG NAME</span></Navbar.Brand>
+            <Navbar bg="primary" expand={expand}>
+                <Navbar.Brand href="/"><img src={logo} width='80px' alt='logo'></img><span className="text-light">SITE NAME</span></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
