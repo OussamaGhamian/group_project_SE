@@ -12,27 +12,27 @@ const LoggedInPageItems = [
     {
 
         title: 'Add Organization',
-        href: '/',
+        href: '/AddOrganization',
 
     },
     {
 
         title: 'Join Team',
-        href: '/',
+        href: '/JoinTeam',
 
     },
-    {
+    // {
 
-        title: 'My Projects',
-        href: '/',
+    //     title: 'My Projects',
+    //     href: '/',
 
-    },
-    {
+    // },
+    // {
 
-        title: 'My Tasks',
-        href: '/',
+    //     title: 'My Tasks',
+    //     href: '/',
 
-    }
+    // }
 ]
 
 export {

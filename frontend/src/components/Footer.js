@@ -7,7 +7,7 @@ export default function Footer() {
     return (
         <div >
             <Navbar bg="primary" expand="sm">
-                <span > © {year} ORG NAME.  All rights reserved.</span>
+                <span > © {year} SITE NAME.  All rights reserved.</span>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
