@@ -17,10 +17,11 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-
 // +--------+-----------+-----------------------------------------+-----------------------------------+---------------------------------------------------------------------------+------------+
-// |        | GET|HEAD  | /                                       | generated::fsU8F09atmhpJG2V       | Closure                                                                   | web        |
-// |        | POST      | api/login                               | generated::Ucx7U2odHjBAlR6g       | App\Http\Controllers\AuthController@login                                 | api        |
+// | Domain | Method    | URI                                     | Name                              | Action                                                                    | Middleware |
+// +--------+-----------+-----------------------------------------+-----------------------------------+---------------------------------------------------------------------------+------------+
+// |        | GET|HEAD  | /                                       | generated::KbFmKqPPuYoYuLZo       | Closure                                                                   | web        |
+// |        | POST      | api/login                               | login                             | App\Http\Controllers\AuthController@login                                 | api        |
 // |        | POST      | api/project                             | project.store                     | App\Http\Controllers\ProjectController@store                              | api        |
 // |        |           |                                         |                                   |                                                                           | auth:api   |
 // |        | GET|HEAD  | api/project                             | project.index                     | App\Http\Controllers\ProjectController@index                              | api        |
@@ -31,17 +32,12 @@ use Illuminate\Support\Facades\Route;
 // |        |           |                                         |                                   |                                                                           | auth:api   |
 // |        | GET|HEAD  | api/project/{project}                   | project.show                      | App\Http\Controllers\ProjectController@show                               | api        |
 // |        |           |                                         |                                   |                                                                           | auth:api   |
-// |        | POST      | api/register                            | generated::XXdHnlvwbjyW26tY       | App\Http\Controllers\AuthController@register                              | api        |
+// |        | POST      | api/register                            | generated::dZSn9aOkXyrSxB0Y       | App\Http\Controllers\AuthController@register                              | api        |
 // |        | POST      | api/task                                | task.store                        | App\Http\Controllers\TaskController@store                                 | api        |
-// |        |           |                                         |                                   |                                                                           | auth:api   |
 // |        | GET|HEAD  | api/task                                | task.index                        | App\Http\Controllers\TaskController@index                                 | api        |
-// |        |           |                                         |                                   |                                                                           | auth:api   |
 // |        | DELETE    | api/task/{task}                         | task.destroy                      | App\Http\Controllers\TaskController@destroy                               | api        |
-// |        |           |                                         |                                   |                                                                           | auth:api   |
 // |        | PUT|PATCH | api/task/{task}                         | task.update                       | App\Http\Controllers\TaskController@update                                | api        |
-// |        |           |                                         |                                   |                                                                           | auth:api   |
 // |        | GET|HEAD  | api/task/{task}                         | task.show                         | App\Http\Controllers\TaskController@show                                  | api        |
-// |        |           |                                         |                                   |                                                                           | auth:api   |
 // |        | GET|HEAD  | oauth/authorize                         | passport.authorizations.authorize | Laravel\Passport\Http\Controllers\AuthorizationController@authorize       | web        |
 // |        |           |                                         |                                   |                                                                           | auth       |
 // |        | DELETE    | oauth/authorize                         | passport.authorizations.deny      | Laravel\Passport\Http\Controllers\DenyAuthorizationController@deny        | web        |
@@ -76,4 +72,4 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', 'AuthController@register');
 Route::post('/login', 'AuthController@login');
 Route::apiResource('/project', 'ProjectController')->middleware('auth:api');
-Route::apiResource('/task', 'TaskController')->middleware('auth:api');
+Route::apiResource('/task', 'TaskController');
