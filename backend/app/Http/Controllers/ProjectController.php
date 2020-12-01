@@ -25,18 +25,7 @@ class ProjectController extends Controller
             return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
         }
     }
-    public function myProjects()
-    {
-        $user = auth()->user();
-        // get a certain user's teams
-        $teams = $user->teams;
-        $projects = [];
-        // get the what projects are assigned to each team that the user is a part of
-        foreach ($teams as $team) {
-            $projects = $team->projects;
-        }
-        return $projects;
-    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -52,8 +41,6 @@ class ProjectController extends Controller
                 'organization_id' => 'required',
                 'due_date' => 'required'
             ]));
-            // insert a record into the pivot table 
-            // $project->teams()->attach(1);
             if ($project)
                 return response()->json(["data" => $project, 'success' => true, 'msg' => 'Project has been added successfully']);
         } catch (Exception $ex) {
@@ -113,6 +100,62 @@ class ProjectController extends Controller
         try {
             if ($project->delete())
                 return response()->json(['data' => [], "success" => true, 'msg' => "Project with id: {$project->id} has been deleted successfully"]);
+        } catch (Exception $ex) {
+            return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
+        }
+    }
+
+    public function myProjects()
+    {
+        try {
+            $user = auth()->user();
+            // get a certain user's teams
+            $teams = $user->teams;
+            $projects = [];
+            // get the what projects are assigned to each team that the user is a part of
+            foreach ($teams as $team) {
+                $projects = $team->projects;
+            }
+            if (count($projects))
+                return response()->json(['data' => $projects, 'success' => true, 'msg' => "Projects for user with id: $user->id have been retrieved successfully "]);
+        } catch (Exception $ex) {
+            return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
+        }
+    }
+    public function projectTasks(Request $request)
+    {
+        try {
+            $project_id = $request->project_id;
+            $project = Project::find($project_id);
+            $tasks = $project->tasks;
+            if (count($tasks))
+                return response()->json(['data' => $tasks, 'success' => true, 'msg' => "For project with id: $project_id, tasks have been retrieved successfully"]);
+            return response()->json(['data' => [], 'success' => true, 'msg' => "For project with id: $project_id, no tasks to be retrieved"]);
+        } catch (Exception $ex) {
+            return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
+        }
+    }
+    public function projectTeams(Request $request)
+    {
+        try {
+            $project_id = $request->project_id;
+            $project = Project::find($project_id);
+            $teams = $project->teams;
+            if (count($teams))
+                return response()->json(['data' => $teams, 'success' => true, 'msg' => "For project with id: $project_id, teams have been retrieved successfully"]);
+            return response()->json(['data' => [], 'success' => true, 'msg' => "For project with id: $project_id, no teams to be retrieved"]);
+        } catch (Exception $ex) {
+            return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
+        }
+    }
+    public function projectOrganization(Request $request)
+    {
+        try {
+            $project_id = $request->project_id;
+            $project = Project::find($project_id);
+            $organization = $project->organization;
+            if (isset($organization))
+                return response()->json(['data' => $organization, 'success' => true, 'msg' => "For project with id: $project_id, organization have been retrieved successfully"]);
         } catch (Exception $ex) {
             return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
         }

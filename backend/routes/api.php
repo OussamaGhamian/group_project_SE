@@ -116,6 +116,9 @@ Route::apiResource('/organization', 'OrganizationController')->middleware('auth:
 
 Route::apiResource('/project', 'ProjectController')->middleware('auth:api');
 Route::get('/myprojects', 'ProjectController@myProjects')->middleware('auth:api');
+Route::post('/projectteams', 'ProjectController@projectTeams')->middleware('auth:api');
+Route::post('/projecttasks', 'ProjectController@projectTasks')->middleware('auth:api');
+Route::post('/projectorganization', 'ProjectController@projectOrganization')->middleware('auth:api');
 
 Route::apiResource('/team', 'TeamController')->middleware('auth:api');
 
