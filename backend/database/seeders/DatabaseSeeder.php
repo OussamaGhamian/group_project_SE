@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
         $seed->run();
         $seed = new Team();
         $seed->run();
-        // $seed = new Task();
-        // $seed->run();
+        $seed = new Task();
+        $seed->run();
     }
 }

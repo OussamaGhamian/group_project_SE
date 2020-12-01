@@ -24,7 +24,7 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->words(2),
+            'title' => $this->faker->word(),
             'user_id' => $this->faker->unique(true)->numberBetween(1, User::count()),
             'project_id' => $this->faker->unique(true)->numberBetween(1, Project::count()),
             'description' => $this->faker->text(),
