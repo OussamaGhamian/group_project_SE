@@ -5,9 +5,7 @@ import React from "react";
 
 export default function description() {
     return (
-
-
-        <Card className="text-center" >
+        <div >
             <Card.Body>
                 <Card.Title>Special title treatment</Card.Title>
                 <Card.Text>
@@ -15,6 +13,6 @@ export default function description() {
                 </Card.Text>
                 <Button variant="success" href="/signup">Join Us Today </Button>
             </Card.Body>
-        </Card>
+        </div>
     );
 }

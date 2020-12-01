@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown, Navbar, Nav } from 'react-bootstrap';
-import logo from '../like.png';
+import logo from '../assets/img/like.png';
 import { useLocation } from 'react-router-dom';
 
 export default function Header({ Items }) {

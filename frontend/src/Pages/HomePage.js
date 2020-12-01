@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import { HomePageItems } from '../components/NavbarItems';
-import Home from '../component/home/home';
+import Home from '../components/home/home';
 
 
 export default function HomePage() {

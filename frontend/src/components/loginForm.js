@@ -3,12 +3,11 @@ import Form from 'react-bootstrap/Form'
 import Button from "react-bootstrap/Button";
 
 
-export default function login() {
+export default function Login() {
     return (
-        <Form style={{'height':"50%",'width':"50%"}}>
+        <Form >
+            <br></br>
             <Form.Group controlId="formBasicEmail">
-                <hi>Log in</hi>
-                <br></br>
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter your email" />
                 <Form.Text className="text-muted">
