@@ -113,6 +113,7 @@ Route::apiResource('/user', 'UserController')->middleware('auth:api');
 Route::post('/userteam', 'UserController@assignToTeam')->middleware('auth:api');
 
 Route::apiResource('/organization', 'OrganizationController')->middleware('auth:api');
+Route::get('/allorganizations', 'OrganizationController@allOrganizatios')->middleware('auth:api');
 
 Route::apiResource('/project', 'ProjectController')->middleware('auth:api');
 Route::get('/myprojects', 'ProjectController@myProjects')->middleware('auth:api');

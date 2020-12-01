@@ -26,6 +26,18 @@ class OrganizationController extends Controller
         }
     }
 
+    public function allOrganizatios()
+    {
+        try {
+            $organizations = Organization::all();
+            if (count($organizations))
+                return response()->json(['data' => $organizations, 'success' => true, 'msg' => "Organiztions have been retrieved successfully"]);
+            return response()->json(["data" => [], 'success' => true, 'msg' => 'No ognizations to be retrieved']);
+        } catch (Exception $ex) {
+            return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -63,7 +75,7 @@ class OrganizationController extends Controller
     public function show(Organization $organization)
     {
         try {
-            return response()->json(["data" => $organization, 'success' => true, 'msg' => "Task with id: {$organization->id} has been retrieved successfully"]);
+            return response()->json(["data" => $organization, 'success' => true, 'msg' => "Organization with id: {$organization->id} has been retrieved successfully"]);
         } catch (Exception $ex) {
             return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
         }

@@ -17,8 +17,8 @@ class TeamController extends Controller
     public function index()
     {
         try {
-            // $teams = Team::all();
-            $teams = auth()->user()->organizations->teams();
+            $teams = Team::all();
+            //$teams = auth()->user()->organizations->teams();
             if (count($teams))
                 return response()->json(['data' => $teams, 'success' => true, 'msg' => "Teams have been retrieved successfully"]);
             return response()->json(["data" => [], 'success' => true, 'msg' => 'No teams to be retrieved']);
