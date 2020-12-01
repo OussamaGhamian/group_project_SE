@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 export default function SignUpForm() {
     return (
         <div>
-            <div className='m-5'>
+            <div>
                 <Form>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Your Name</Form.Label>
