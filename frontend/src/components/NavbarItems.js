@@ -17,22 +17,16 @@ const LoggedInPageItems = [
     },
     {
 
-        title: 'Join Team',
-        href: '/JoinTeam',
+        title: 'Edit Profile',
+        href: '/EditProfile',
 
     },
-    // {
+    {
 
-    //     title: 'My Projects',
-    //     href: '/',
+        title: 'Log Out!',
+        href: '/',
 
-    // },
-    // {
-
-    //     title: 'My Tasks',
-    //     href: '/',
-
-    // }
+    },
 ]
 
 export {

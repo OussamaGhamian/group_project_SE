@@ -1,6 +1,6 @@
 import React from 'react';
-import { Dropdown, Navbar, Nav } from 'react-bootstrap';
-import logo from '../like.png';
+import { Navbar, Nav } from 'react-bootstrap';
+import logo from '../assets/img/like.png';
 import { useLocation } from 'react-router-dom';
 
 export default function Header({ Items }) {
@@ -21,14 +21,7 @@ export default function Header({ Items }) {
                                 </li>
                             );
                         })}
-                        {currentURL === '/' ? null : < Dropdown >
-                            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                My Account</Dropdown.Toggle>
-                            <Dropdown.Menu className="sm">
-                                <Dropdown.Item href="/">Edit Profile</Dropdown.Item>
-                                <Dropdown.Item href="/">Log Out!</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>}
+
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
