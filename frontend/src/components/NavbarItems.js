@@ -1,11 +1,11 @@
 const HomePageItems = [
     {
         title: 'Log In',
-        href: '/LoggedIn',
+        href: '/login',
     },
     {
-        title: 'Register',
-        href: '/',
+        title: 'Sign Up',
+        href: '/signup',
     }
 ]
 const LoggedInPageItems = [
