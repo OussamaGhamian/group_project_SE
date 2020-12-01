@@ -109,17 +109,21 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', 'AuthController@register');
 Route::post('/login', 'AuthController@login');
 
-Route::apiResource('/user', 'UserController')->middleware('auth:api');
-Route::post('/userteam', 'UserController@assignToTeam')->middleware('auth:api');
+Route::middleware('auth:api')->group(function () {
+    Route::apiResource('/user', 'UserController');
+    Route::post('/userteam', 'UserController@assignToTeam');
+    Route::post('/userteams', 'UserController@userTeams');
+    Route::post('/usertasks', 'UserController@userTasks');
 
-Route::apiResource('/organization', 'OrganizationController')->middleware('auth:api');
+    Route::apiResource('/organization', 'OrganizationController');
 
-Route::apiResource('/project', 'ProjectController')->middleware('auth:api');
-Route::get('/myprojects', 'ProjectController@myProjects')->middleware('auth:api');
-Route::post('/projectteams', 'ProjectController@projectTeams')->middleware('auth:api');
-Route::post('/projecttasks', 'ProjectController@projectTasks')->middleware('auth:api');
-Route::post('/projectorganization', 'ProjectController@projectOrganization')->middleware('auth:api');
+    Route::apiResource('/project', 'ProjectController');
+    Route::get('/myprojects', 'ProjectController@myProjects');
+    Route::post('/projectteams', 'ProjectController@projectTeams');
+    Route::post('/projecttasks', 'ProjectController@projectTasks');
+    Route::post('/projectorganization', 'ProjectController@projectOrganization');
 
-Route::apiResource('/team', 'TeamController')->middleware('auth:api');
+    Route::apiResource('/team', 'TeamController');
 
-Route::apiResource('/task', 'TaskController')->middleware('auth:api');
+    Route::apiResource('/task', 'TaskController');
+});
