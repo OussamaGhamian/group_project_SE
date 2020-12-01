@@ -18,7 +18,7 @@ class TeamController extends Controller
     {
         try {
             // $teams = Team::all();
-            $teams=auth()->user->organizations->teams();
+            $teams = auth()->user()->organizations->teams();
             if (count($teams))
                 return response()->json(['data' => $teams, 'success' => true, 'msg' => "Teams have been retrieved successfully"]);
             return response()->json(["data" => [], 'success' => true, 'msg' => 'No teams to be retrieved']);
@@ -42,11 +42,13 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         try {
+            // provide in your request the project for newly created team
             $team = Team::create($request->validate([
                 'name' => 'required',
-                'ogranization_id' => 'required',
-        
+                'organization_id' => 'required',
             ]));
+            // adding a record in team_project table 
+            $team->projects()->attach($request->project_id);
             return response()->json(["data" => $team, "success" => true, 'msg' => 'Team has been added successfully']);
         } catch (Exception $ex) {
             return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
@@ -74,7 +76,7 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -97,7 +99,6 @@ class TeamController extends Controller
         } catch (Exception $ex) {
             return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
         }
-        
     }
 
     /**

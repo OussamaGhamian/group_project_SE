@@ -6,7 +6,6 @@ use App\Models\Project;
 use Exception;
 use Illuminate\Http\Request;
 
-use function PHPUnit\Framework\isEmpty;
 
 class ProjectController extends Controller
 {
@@ -26,7 +25,18 @@ class ProjectController extends Controller
             return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
         }
     }
-
+    public function myProjects()
+    {
+        $user = auth()->user();
+        // get a certain user's teams
+        $teams = $user->teams;
+        $projects = [];
+        // get the what projects are assigned to each team that the user is a part of
+        foreach ($teams as $team) {
+            $projects = $team->projects;
+        }
+        return $projects;
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -39,8 +49,11 @@ class ProjectController extends Controller
             $project = Project::create($request->validate([
                 'title' => 'required',
                 'description' => 'required',
+                'organization_id' => 'required',
                 'due_date' => 'required'
             ]));
+            // insert a record into the pivot table 
+            // $project->teams()->attach(1);
             if ($project)
                 return response()->json(["data" => $project, 'success' => true, 'msg' => 'Project has been added successfully']);
         } catch (Exception $ex) {

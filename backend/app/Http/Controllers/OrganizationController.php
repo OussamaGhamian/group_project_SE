@@ -17,8 +17,7 @@ class OrganizationController extends Controller
     public function index()
     {
         try {
-            //$organizations = Organization::all();
-            $organizations=auth()->user->organizations();
+            $organizations = auth()->user()->organizations;
             if (count($organizations))
                 return response()->json(['data' => $organizations, 'success' => true, 'msg' => "Organiztions have been retrieved successfully"]);
             return response()->json(["data" => [], 'success' => true, 'msg' => 'No ognizations to be retrieved']);
@@ -42,12 +41,13 @@ class OrganizationController extends Controller
      */
     public function store(Request $request)
     {
-        $owner_id=Auth::user()->id;
+        $request['owner_id'] = auth()->id();
         try {
             $organization = Organization::create($request->validate([
                 'name' => 'required',
-                 'owner_id'=>$owner_id,
+                'owner_id' => 'required',
             ]));
+
             return response()->json(["data" => $organization, "success" => true, 'msg' => 'Organization has been added successfully']);
         } catch (Exception $ex) {
             return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
@@ -75,7 +75,7 @@ class OrganizationController extends Controller
      * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-   
+
     /**
      * Update the specified resource in storage.
      *
@@ -90,7 +90,7 @@ class OrganizationController extends Controller
             $request['owner_id'] = $request['owner_id'] ?? $organization->name;
             $updated = $organization->update($request->validate([
                 'name' => 'required',
-                'owner_id'=>'required',
+                'owner_id' => 'required',
             ]));
             if ($updated)
                 return response(['data' => $organization, 'success' => true, 'msg' => "Organization  with id: {$organization->id} has been updated"]);

@@ -15,10 +15,12 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('organization_id');
             $table->string('title');
             $table->text("description");
-            $table->timestamps();
             $table->timestamp('due_date');
+            $table->timestamps();
+            $table->foreign('organization_id')->references('id')->on('organizations')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

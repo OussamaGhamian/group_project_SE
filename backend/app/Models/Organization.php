@@ -29,13 +29,20 @@ use Illuminate\Database\Eloquent\Model;
 class Organization extends Model
 {
     use HasFactory;
-    protected $guarded=[];
+    protected $guarded = [];
 
-    public function user(){
-        return $this->belongsTo(User::class,'owner_id');
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'owner_id');
     }
 
-    public function teams(){
+    public function teams()
+    {
         return $this->hasMany(Team::class);
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
     }
 }

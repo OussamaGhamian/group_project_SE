@@ -33,8 +33,8 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'due_date'];
-    
+    protected $fillable = ['title', 'description', 'due_date', 'organization_id'];
+
     public function tasks()
     {
         return $this->hasMany(Task::class);
@@ -42,5 +42,9 @@ class Project extends Model
     public function teams()
     {
         return $this->belongsToMany(Team::class);
+    }
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
     }
 }
