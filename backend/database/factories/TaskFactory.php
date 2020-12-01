@@ -25,8 +25,8 @@ class TaskFactory extends Factory
     {
         return [
             'title' => $this->faker->words(2),
-            'user_id'=>$this->faker->unique(true)->numberBetween(1, User::count()),
-            'project_id'=>$this->faker->unique(true)->numberBetween(1, Project::count()),
+            'user_id' => $this->faker->unique(true)->numberBetween(1, User::count()),
+            'project_id' => $this->faker->unique(true)->numberBetween(1, Project::count()),
             'description' => $this->faker->text(),
             'is_done' => $this->faker->boolean(),
             'due_date' => $this->faker->dateTimeBetween('now', '+1 months'),
