@@ -15,7 +15,7 @@ export default function Footer() {
                             <a className="nav-link text-light " href='./'> About </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link text-light" href='./'> Contact Us </a>
+                            <a className="nav-link text-light" href='/contactus'> Contact Us </a>
                         </li>
                     </Nav>
                 </Navbar.Collapse>

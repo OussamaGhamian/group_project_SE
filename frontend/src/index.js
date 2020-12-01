@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import ProjectPage from './Pages/ProjectPage';
 import LogInPage from './Pages/LogInPage';
 import SignUpPage from './Pages/SignUpPage';
+import contactus from './Pages/ContactUsPage';
 
 
 ReactDOM.render(
@@ -20,6 +21,8 @@ ReactDOM.render(
         <Route exact path="/LoggedIn" component={LoggedInPage} />
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/ProjectPage" component={ProjectPage} />
+        <Route exact path="/contactus" component={contactus} />
+
       </BrowserRouter>
     </div>
     <Footer />
