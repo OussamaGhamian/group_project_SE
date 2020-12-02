@@ -12,7 +12,7 @@ export default function Footer() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
                         <li className="nav-item">
-                            <a className="nav-link text-light " href='./'> About </a>
+                            <a className="nav-link text-light " href='./aboutus'> About </a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link text-light" href='/contactus'> Contact Us </a>

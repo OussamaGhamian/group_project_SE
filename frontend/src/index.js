@@ -10,6 +10,8 @@ import ProjectPage from './Pages/ProjectPage';
 import LogInPage from './Pages/LogInPage';
 import SignUpPage from './Pages/SignUpPage';
 import contactus from './Pages/ContactUsPage';
+import aboutus from './components/aboutus/aboutus';
+
 
 
 ReactDOM.render(
@@ -22,6 +24,8 @@ ReactDOM.render(
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/ProjectPage" component={ProjectPage} />
         <Route exact path="/contactus" component={contactus} />
+          <Route exact path="/aboutus" component={aboutus} />
+
 
       </BrowserRouter>
     </div>
