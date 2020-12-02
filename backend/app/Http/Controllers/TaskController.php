@@ -109,4 +109,31 @@ class TaskController extends Controller
             return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
         }
     }
+
+    public function taskUser(Request $request)
+    {
+        try {
+            $task_id = $request->task_id;
+            $task = Task::find($task_id);
+            $user = $task->user;
+            if ($user)
+                return response()->json(['data' => $user, 'success' => true, 'msg' => "For task with id: $task_id, user has been retrieved successfully"]);
+            return response()->json(['data' => null, 'success' => true, 'msg' => "For task with id: $task_id, no user to be retrieved"]);
+        } catch (Exception $ex) {
+            return response()->json(["data" => null ,'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
+        }
+    }
+    public function taskProject(Request $request)
+    {
+        try {
+            $task_id = $request->task_id;
+            $task = Task::find($task_id);
+            $project = $task->project;
+            if ($project)
+                return response()->json(['data' => $project, 'success' => true, 'msg' => "For task with id: $task_id, project has been retrieved successfully"]);
+            return response()->json(['data' => [], 'success' => true, 'msg' => "For task with id: $task_id, no project to be retrieved"]);
+        } catch (Exception $ex) {
+            return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
+        }
+    }
 }
