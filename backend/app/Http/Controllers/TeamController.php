@@ -116,4 +116,50 @@ class TeamController extends Controller
             return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
         }
     }
+
+    public function teamOrganization(Request $request)
+    {
+        try {
+            $team_id = $request->team_id;
+            $team= Team::find($team_id);
+            $organization = $team->organization;
+            if ($organization)
+                return response()->json(['data' => $organization, 'success' => true, 'msg' => "For team with id: $team_id, it belong to this organization"]);
+            return response()->json(['data' => [], 'success' => true, 'msg' => "For team with id: $team_id,doesn't belong to any organization"]);
+        } catch (Exception $ex) {
+            return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
+        }
+    }
+
+    public function teamProjects(Request $request)
+    {
+        try {
+            $team_id = $request->team_id;
+            $team= Team::find($team_id);
+            $projects = $team->projects;
+            if ($projects)
+                return response()->json(['data' => $projects, 'success' => true, 'msg' => "For team with id: $team_id, Projects have been retrieved successfully "]);
+            return response()->json(['data' => [], 'success' => true, 'msg' => "For team with id: $team_id,There is no projects for this team"]);
+        } catch (Exception $ex) {
+            return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
+        }
+    }
+
+    public function teamUsers(Request $request)
+    {
+        try {
+            $team_id = $request->team_id;
+            $team= Team::find($team_id);
+            $users = $team->users;
+            if ($users)
+                return response()->json(['data' => $users, 'success' => true, 'msg' => "For team with id: $team_id, Users have been retrieved successfully "]);
+            return response()->json(['data' => [], 'success' => true, 'msg' => "For team with id: $team_id,There is no one in this team"]);
+        } catch (Exception $ex) {
+            return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
+        }
+    }
+
+  
+
+
 }

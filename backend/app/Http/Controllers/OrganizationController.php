@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Organization;
+use App\Models\Project;
+use App\Models\Team;
 use Auth;
 use Exception;
 use Illuminate\Http\Request;
@@ -126,4 +128,50 @@ class OrganizationController extends Controller
             return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
         }
     }
+
+    public function organizationTeams(Request $request)
+    {
+        try {
+            $organization_id = $request->organization_id;
+            $organization= Organization::find($organization_id);
+            $teams = $organization->teams;
+            if ($teams)
+                return response()->json(['data' => $teams, 'success' => true, 'msg' => "For organization with id: $organization_id, teams have been retrieved successfully"]);
+            return response()->json(['data' => [], 'success' => true, 'msg' => "For organization with id: $organization_id, no teams to be retrieved"]);
+        } catch (Exception $ex) {
+            return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
+        }
+    }
+
+  
+    public function organizationProjects(Request $request)
+    {
+        try {
+            $organization_id = $request->organization_id;
+            $organization= Organization::find($organization_id);
+            $projects = $organization->projects;
+            if ($projects)
+                return response()->json(['data' => $projects, 'success' => true, 'msg' => "For organization with id: $organization_id, projects have been retrieved successfully"]);
+            return response()->json(['data' => [], 'success' => true, 'msg' => "For organization with id: $organization_id, no projects to be retrieved"]);
+        } catch (Exception $ex) {
+            return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
+        }
+    }
+
+    public function organizationOwner(Request $request)
+    {
+        try {
+            //dd($organization);
+            $organization_id = $request->organization_id;
+            $organization= Organization::find($organization_id);
+            $user = $organization->user;
+            if ($user)
+                return response()->json(['data' => $user, 'success' => true, 'msg' => "For organization with id:$organization_id , user has been retrieved successfully"]);
+            return response()->json(['data' => [], 'success' => true, 'msg' => "For organization with id: $organization_id , There is no owner for this company"]);
+        } catch (Exception $ex) {
+            return response()->json(["data" => [], 'success' => false, 'msg' => "Internal server error: {$ex->getMessage()}"], 500);
+        }
+    }
+
+
 }

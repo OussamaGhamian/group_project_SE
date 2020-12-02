@@ -132,12 +132,18 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/userteams', 'UserController@userTeams');
     Route::post('/usertasks', 'UserController@userTasks');
 
-<<<<<<< HEAD
-Route::apiResource('/organization', 'OrganizationController')->middleware('auth:api');
-Route::get('/allorganizations', 'OrganizationController@allOrganizatios')->middleware('auth:api');
-=======
+
     Route::apiResource('/organization', 'OrganizationController');
->>>>>>> e5b9e5af554a6abe139bf2711688a57a0d0305e2
+    Route::get('/allorganizations', 'OrganizationController@allOrganizatios');
+    Route::post('/organizationteams/{organization_id}', 'OrganizationController@organizationTeams');
+    Route::post('/organizationprojects/{organization_id} ', 'OrganizationController@organizationProjects');
+    Route::post('/organizationowner/{organization_id}', 'OrganizationController@organizationOwner');
+
+    Route::apiResource('/team', 'OrganizationController');
+    Route::post('/teamorganization/{team_id}', 'TeamController@teamOrganization');
+    Route::post('/teamprojects/{team_id}', 'TeamController@teamProjects');
+    Route::post('/teamusers/{team_id}', 'TeamController@teamUsers');
+
 
     Route::apiResource('/project', 'ProjectController');
     Route::get('/myprojects', 'ProjectController@myProjects');
