@@ -15,6 +15,6 @@ class Organization extends Seeder
     public function run()
     {
         $seeder = new OrganizationFactory();
-        $seeder->count(6)->create();
+        $seeder->count(50)->create();
     }
 }

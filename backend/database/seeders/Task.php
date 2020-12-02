@@ -15,6 +15,6 @@ class Task extends Seeder
     public function run()
     {
         $seeder = new TaskFactory();
-        $seeder->count(15)->create();
+        $seeder->count(200)->create();
     }
 }

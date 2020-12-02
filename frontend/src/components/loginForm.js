@@ -15,15 +15,15 @@ export default function Login() {
     function handleSubmit(event) {
         event.preventDefault();
     }
-    function HandleLogIn(event) {
+    async function HandleLogIn(event) {
         event.preventDefault();
         const isLoggedIn = async () => {
-            return checkCredentials(email, password);
+            return await checkCredentials(email, password);
         }
         isLoggedIn().then(function (response) {
             if (response.data.accessToken) {
                 const cookies = new Cookies();
-                var token = response.data.access_token;
+                var token = response.data.accessToken;
                 var userId = response.data.user.id;
                 cookies.set('token', { token }, { path: '/' });
                 cookies.set('userId', { userId }, { path: '/' });

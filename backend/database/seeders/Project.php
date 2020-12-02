@@ -15,6 +15,6 @@ class Project extends Seeder
     public function run()
     {
         $seeder = new ProjectFactory();
-        $seeder->count(3)->create();
+        $seeder->count(100)->create();
     }
 }

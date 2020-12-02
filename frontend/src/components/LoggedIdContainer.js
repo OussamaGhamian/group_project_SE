@@ -1,47 +1,98 @@
-import { DropdownButton, Dropdown } from "react-bootstrap"
+import { useEffect, useState } from "react";
+import { DropdownButton, Dropdown, Form, Button } from "react-bootstrap"
+import { getOrganization, addOrganization } from "../API/OrganizationAPI";
+import { getProjects } from "../API/ProjectsAPI";
 
-export default function LoggedIdContainer({ body, title, button, hasOrganization }) {
+export default function LoggedIdContainer() {
+    const [orgName, setorgName] = useState("");
+    const [organizations, setOrganizations] = useState("")
+    const [myProjects, setmyProjects] = useState("")
+    const userProjects = async () => {
+        const result = await getProjects();
+        setmyProjects(result.data);
+    }
+    const userOrganizations = async () => {
+        const result = await getOrganization();
+        setOrganizations(result.data);
+    }
+    useEffect(() => {
+        userProjects();
+        userOrganizations();
+    }, []);
+    var myProjectDropDown = myProjects.data
+    var orgData;
+    var hasOrganization = organizations.success;
+    hasOrganization ? orgData = organizations.data
+        : orgData = [{ name: 'by adding an organization you can manage your projects, teams and tasks, GoodLuck!' }];
+
+    var title;
+    hasOrganization ? title = 'list of Organizations' : title = 'Lets add an organization first!!';
+
+
+    function validateForm() {
+        return orgName.length > 0;
+    }
+    function handleSubmit(event) {
+        event.preventDefault();
+    }
+    async function HandleAddOrg(event) {
+        event.preventDefault();
+        await addOrganization(orgName);
+        window.location.reload();
+
+    }
     return (
         <div >
             <div className="card text-center 100vh">
                 <div className="card-header">
-
                     {hasOrganization ?
                         <ul className="nav nav-pills card-header-pills">
                             <li className="nav-item m-1">
                                 <DropdownButton variant="success" id="dropdown-basic-button" title="My Organization">
-                                    <Dropdown.Item href="#/action-1">ORG 1</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">ORG 2</Dropdown.Item>
+                                    {orgData.map(item => (
+                                        <Dropdown.Item key={item.id} href="/">{item.name}</Dropdown.Item>
+                                    ))}
                                 </DropdownButton>
                             </li>
                             <li className="nav-item m-1">
                                 <DropdownButton variant="success" id="dropdown-basic-button" title="My Projects">
-                                    <Dropdown.Item href="#/action-1">PROJECT 1 ORG 1</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">PROJECT 2 ORG 1</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">PROJECT 3 of ORG 2</Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">PROJECT 4 of ORG 2</Dropdown.Item>
+                                    {myProjectDropDown.map(item => {
+                                        return (
+                                            <Dropdown.Item key={item.id} href="/">{item.title}</Dropdown.Item>
+                                        )
+                                    })}
                                 </DropdownButton>
                             </li>
                         </ul> : null}
-
                 </div>
-                <div className="card-body">
+                <div className="card-body w-50 mx-auto">
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group size="lg" controlId="orgName">
+                            <Form.Label>Organization Name</Form.Label>
+                            <Form.Control
+                                autoFocus
+                                type="text"
+                                value={orgName}
+                                onChange={(e) => setorgName(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Button block size="lg" type="submit" disabled={!validateForm()} onClick={HandleAddOrg}>
+                            Add Organization
+        </Button>
+                    </Form>
+                    <br></br>
                     <h5 className="card-title">{title}</h5>
-                    <p className="card-text">
-                        {body.map(item => {
-                            return (
-                                <li>
-                                    <a href={item.href}>{item.title}</a>
-                                </li>
-                            )
-                        })}
-                    </p>
-                    <a href={button.href} className="btn btn-primary">{button.title}</a>
+                    <ul className="list-group card-text">
+                        {orgData.map(item => (
+                            <li key={item.id} className="list-group-item">
+                                <a key={item.id} href={"/" + item.href}>{item.name}</a>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
                 <div className="card-footer text-muted">
-
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

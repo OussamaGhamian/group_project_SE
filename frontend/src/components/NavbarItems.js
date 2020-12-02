@@ -12,7 +12,7 @@ const LoggedInPageItems = [
     {
 
         title: 'Add Organization',
-        href: '/AddOrganization',
+        href: '/LoggedIn',
 
     },
     {

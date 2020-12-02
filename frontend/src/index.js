@@ -11,6 +11,7 @@ import LogInPage from './Pages/LogInPage';
 import SignUpPage from './Pages/SignUpPage';
 import contactus from './Pages/ContactUsPage';
 import aboutus from './components/aboutus/aboutus';
+import OrganizationPage from './Pages/OrganizationPage';
 
 
 
@@ -19,12 +20,13 @@ ReactDOM.render(
     <div className="content-wrap">
       <BrowserRouter>
         <Route exact path="/" component={HomePage} />
+        <Route exact path="/OrganizationPage" component={OrganizationPage} />
         <Route exact path="/login" component={LogInPage} />
         <Route exact path="/LoggedIn" component={LoggedInPage} />
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/ProjectPage" component={ProjectPage} />
         <Route exact path="/contactus" component={contactus} />
-          <Route exact path="/aboutus" component={aboutus} />
+        <Route exact path="/aboutus" component={aboutus} />
 
 
       </BrowserRouter>
