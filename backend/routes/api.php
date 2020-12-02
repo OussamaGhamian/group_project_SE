@@ -139,7 +139,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/organizationprojects/{organization_id} ', 'OrganizationController@organizationProjects');
     Route::post('/organizationowner/{organization_id}', 'OrganizationController@organizationOwner');
 
-    Route::apiResource('/team', 'OrganizationController');
+    Route::apiResource('/team', 'TeamController');
     Route::post('/teamorganization/{team_id}', 'TeamController@teamOrganization');
     Route::post('/teamprojects/{team_id}', 'TeamController@teamProjects');
     Route::post('/teamusers/{team_id}', 'TeamController@teamUsers');
@@ -151,7 +151,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/projecttasks', 'ProjectController@projectTasks');
     Route::post('/projectorganization', 'ProjectController@projectOrganization');
 
-    Route::apiResource('/team', 'TeamController');
 
     Route::apiResource('/task', 'TaskController');
     Route::post('taskuser', 'TaskController@taskUser');
