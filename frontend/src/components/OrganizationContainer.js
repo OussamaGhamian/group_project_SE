@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react";
 import { DropdownButton, Dropdown, Form, Button } from "react-bootstrap"
-import Cookies from "universal-cookie";
-import { getOrganization, addOrganization } from "../API/OrganizationAPI";
-import { getProjects } from "../API/ProjectsAPI";
+import { getOneOrganization, getOrganization } from "../API/OrganizationAPI";
+import { addProject, getProjects } from "../API/ProjectsAPI";
+import Cookies from 'universal-cookie'
 
-export default function LoggedIdContainer() {
-    const [orgName, setorgName] = useState("");
+
+
+export default function OrganizationContainer() {
+
+    const [ProjName, setProjName] = useState("");
+    const [ProjDescription, setProjDescription] = useState("");
     const [organizations, setOrganizations] = useState("")
     const [myProjects, setmyProjects] = useState("")
+    const [OneOrg, setOneOrg] = useState("")
+    const cookies = new Cookies();
+    const OrgId = cookies.get('OrgId').organizationId;
+
     const userProjects = async () => {
         const result = await getProjects();
         setmyProjects(result.data);
@@ -16,9 +24,15 @@ export default function LoggedIdContainer() {
         const result = await getOrganization();
         setOrganizations(result.data);
     }
+    const getOneOrg = async () => {
+        const result = await getOneOrganization(OrgId);
+        setOneOrg(result.data);
+    }
+
     useEffect(() => {
         userProjects();
         userOrganizations();
+        getOneOrg();
     }, []);
     var myProjectDropDown = myProjects.data
     var orgData;
@@ -27,25 +41,27 @@ export default function LoggedIdContainer() {
         : orgData = [{ name: 'by adding an organization you can manage your projects, teams and tasks, GoodLuck!' }];
 
     var title;
-    hasOrganization ? title = 'list of Organizations' : title = 'Lets add an organization first!!';
+    hasOrganization ? title = 'list of Projects' : title = 'Lets add a project first!!';
 
 
     function validateForm() {
-        return orgName.length > 0;
+        return ProjName.length > 0;
     }
     function handleSubmit(event) {
         event.preventDefault();
     }
-    async function HandleAddOrg(event) {
+    async function HandleAddProj(event) {
         event.preventDefault();
-        await addOrganization(orgName);
-        window.location.reload();
+        await addProject(ProjName, ProjDescription, OrgId);
+        // window.location.reload();
     }
 
-    function orgId(organizationId) {
+    function orgIdnew(organizationId) {
         const cookies = new Cookies();
         cookies.set('OrgId', { organizationId }, { path: '/' });
     }
+
+    console.log('From OrgContainer   ' + OrgId + OneOrg)
     return (
         <div >
             <div className="card text-center 100vh">
@@ -55,7 +71,7 @@ export default function LoggedIdContainer() {
                             <li className="nav-item m-1">
                                 <DropdownButton variant="success" id="dropdown-basic-button" title="My Organization">
                                     {orgData.map(item => (
-                                        <Dropdown.Item key={item.id} href="/OrganizationPage">{item.name}</Dropdown.Item>
+                                        <Dropdown.Item onClick={() => orgIdnew(item.id)} key={item.id} href="/OrganizationPage">{item.name}</Dropdown.Item>
                                     ))}
                                 </DropdownButton>
                             </li>
@@ -63,7 +79,7 @@ export default function LoggedIdContainer() {
                                 <DropdownButton variant="success" id="dropdown-basic-button" title="My Projects">
                                     {myProjects == null ? myProjectDropDown.map(item => {
                                         return (
-                                            <Dropdown.Item onClick={() => orgId(item.id)} key={item.id} href="/OrganizationPage">{item.title}</Dropdown.Item>
+                                            <Dropdown.Item key={item.id} href="/OrganizationPage">{item.title}</Dropdown.Item>
                                         )
                                     }) : null}
                                 </DropdownButton>
@@ -71,28 +87,41 @@ export default function LoggedIdContainer() {
                         </ul> : null}
                 </div>
                 <div className="card-body w-50 mx-auto">
+                    <h3>Welcome To { }</h3>
                     <Form onSubmit={handleSubmit}>
-                        <Form.Group size="lg" controlId="orgName">
-                            <Form.Label>Organization Name</Form.Label>
+                        <Form.Group size="lg" controlId="ProjName">
+                            <Form.Label>Project Name</Form.Label>
                             <Form.Control
                                 autoFocus
                                 type="text"
-                                value={orgName}
-                                onChange={(e) => setorgName(e.target.value)}
+                                value={ProjName}
+                                onChange={(e) => setProjName(e.target.value)}
                             />
                         </Form.Group>
-                        <Button block size="lg" type="submit" disabled={!validateForm()} onClick={HandleAddOrg}>
-                            Add Organization
+                        <Form.Group size="lg" controlId="ProjDescription">
+                            <Form.Label>Project Description</Form.Label>
+                            <Form.Control
+                                autoFocus
+                                type="text"
+                                value={ProjDescription}
+                                onChange={(e) => setProjDescription(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Button block size="lg" type="submit" disabled={!validateForm()} onClick={HandleAddProj}>
+                            Add Project
         </Button>
                     </Form>
                     <br></br>
                     <h5 className="card-title">{title}</h5>
                     <ul className="list-group card-text">
-                        {orgData.map(item => (
-                            <li key={item.id} className="list-group-item">
-                                <a onClick={() => orgId(item.id)} key={item.id} href={"/OrganizationPage"}>{item.name}</a>
-                            </li>
-                        ))}
+                        {myProjects == null ? myProjectDropDown.map(item => {
+                            return (
+                                <li key={item.id} className="list-group-item">
+                                    <a key={item.id} href={"/" + item.href}>{item.name}</a>
+                                </li>
+                            )
+                        }) : null}
+
                     </ul>
                 </div>
                 <div className="card-footer text-muted">
