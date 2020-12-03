@@ -114,7 +114,7 @@ class ProjectController extends Controller
             $projects = [];
             // get the what projects are assigned to each team that the user is a part of
             foreach ($teams as $team) {
-                $projects = $team->projects;
+                $projects[] = $team->projects;
             }
             if (count($projects))
                 return response()->json(['data' => $projects, 'success' => true, 'msg' => "Projects for user with id: $user->id have been retrieved successfully "]);
