@@ -46,6 +46,7 @@ export default function LoggedIdContainer() {
         const cookies = new Cookies();
         cookies.set('OrgId', { organizationId }, { path: '/' });
     }
+    console.log(myProjectDropDown)
     return (
         <div >
             <div className="card text-center 100vh">
@@ -61,11 +62,11 @@ export default function LoggedIdContainer() {
                             </li>
                             <li className="nav-item m-1">
                                 <DropdownButton variant="success" id="dropdown-basic-button" title="My Projects">
-                                    {myProjects == null ? myProjectDropDown.map(item => {
+                                    {myProjectDropDown.map(item => {
                                         return (
-                                            <Dropdown.Item onClick={() => orgId(item.id)} key={item.id} href="/OrganizationPage">{item.title}</Dropdown.Item>
+                                            <Dropdown.Item onClick={() => orgId(item.id)} key={item.id} href="/OrganizationPage">{item[0].title}</Dropdown.Item>
                                         )
-                                    }) : null}
+                                    })}
                                 </DropdownButton>
                             </li>
                         </ul> : null}
