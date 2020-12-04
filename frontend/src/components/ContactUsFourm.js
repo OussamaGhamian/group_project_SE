@@ -1,5 +1,6 @@
 import React from "react";
 import Form from 'react-bootstrap/Form'
+import Button from "react-bootstrap/Button";
 
 
 
@@ -39,10 +40,11 @@ export default function contactus() {
                 <Form.Label>How Was The User Experience</Form.Label>
                 <Form.Control type="range" />
             </Form.Group>
-            <Form.Group>
-                <Form.File id="exampleFormControlFile1" label="Include Screen Shot" />
-            </Form.Group>
-        </Form>
+                <Button block size="lg" type="submit">
+                    Send
+                </Button>
+
+            </Form>
         </div>
 
     );
