@@ -28,8 +28,8 @@ export default function ControlledCarousel() {
                     alt="First slide"
                 />
                 <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h3>Create your project in a simple steps</h3>
+                    <p>Add your organization, its teams, its members.</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item >
@@ -41,8 +41,8 @@ export default function ControlledCarousel() {
                 />
 
                 <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h3>It gives you freedom</h3>
+                    <p>Add more than one project and add more than one team to work on your projects.</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item >
@@ -54,9 +54,9 @@ export default function ControlledCarousel() {
                 />
 
                 <Carousel.Caption>
-                    <h3>Third slide label</h3>
+                    <h3>Get the job done efficiently</h3>
                     <p>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                        With the ability to divide the tasks and accomplish them by more than one person with ease and ease.
                     </p>
                 </Carousel.Caption>
             </Carousel.Item>
@@ -69,10 +69,8 @@ export default function ControlledCarousel() {
                 />
 
                 <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                    </p>
+                    <h3>Create your project in a simple steps</h3>
+                    <p>Add your organization, its teams, its members.</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item >
@@ -84,10 +82,8 @@ export default function ControlledCarousel() {
                 />
 
                 <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                    </p>
+                    <h3>It gives you freedom</h3>
+                    <p>Add more than one project and add more than one team to work on your projects.</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item >
@@ -99,9 +95,9 @@ export default function ControlledCarousel() {
                 />
 
                 <Carousel.Caption>
-                    <h3>Third slide label</h3>
+                    <h3>Get the job done efficiently</h3>
                     <p>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                        With the ability to divide the tasks and accomplish them by more than one person with ease and ease.
                     </p>
                 </Carousel.Caption>
             </Carousel.Item>
@@ -114,10 +110,8 @@ export default function ControlledCarousel() {
                 />
 
                 <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                    </p>
+                    <h3>Create your project in a simple steps</h3>
+                    <p>Add your organization, its teams, its members.</p>
                 </Carousel.Caption>
             </Carousel.Item>
 

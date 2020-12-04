@@ -10,7 +10,7 @@ export default function Header({ Items }) {
     return (
         <div>
             <Navbar bg="primary" expand={expand}>
-                <Navbar.Brand href="/"><img src={logo} width='70px' alt='logo'></img><span className="text-light">SITE NAME</span></Navbar.Brand>
+                <Navbar.Brand href="/"><img src={logo} width='70px' alt='logo'></img><span className="text-light">PROJECT MANAGEMENT</span></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
